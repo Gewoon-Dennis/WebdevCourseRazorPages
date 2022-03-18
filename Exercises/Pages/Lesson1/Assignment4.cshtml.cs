@@ -1,4 +1,7 @@
+using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Routing;
 
 namespace Exercises.Pages.Lesson1
 {
@@ -7,6 +10,37 @@ namespace Exercises.Pages.Lesson1
         public void OnGet()
         {
 
+        }
+    }
+
+    public class CategoryConstraint : IRouteConstraint
+    {
+        public CategoryConstraint()
+        {
+            
+        }
+        public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values,
+            RouteDirection routeDirection)
+        {
+            if (values.TryGetValue(routeKey, out object value))
+            {
+                string stringValue = Convert.ToString(value).ToLower();
+                if (stringValue.StartsWith("cat"))
+                {
+                    string numberPart = stringValue.Replace("cat", "");
+                    bool result = int.TryParse(numberPart, out int number);
+                    return result;
+                }
+                
+                if (stringValue.StartsWith("subcat"))
+                {
+                    string numberPart = stringValue.Replace("subcat", "");
+                    bool result = int.TryParse(numberPart, out int number);
+                    return result;
+                }
+            }
+            
+            return false;
         }
     }
 }

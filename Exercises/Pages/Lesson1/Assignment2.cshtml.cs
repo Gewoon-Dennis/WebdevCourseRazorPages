@@ -10,12 +10,13 @@ namespace Exercises.Pages.Lesson1
     {
         public enum Direction
         {
-            Left, Right, Forward, Backward
+            Left, Right, Forward, Backward, Crash
         }
 
         public void OnGet([FromQuery] List<Direction> directions)
         {
             Directions = directions;
+            
         }
 
         public List<Direction> Directions { get; set; }

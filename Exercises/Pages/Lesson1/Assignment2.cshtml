@@ -7,11 +7,20 @@
 
 @{
     string url = "?";
+         foreach (var direction in Model.Directions)
+         {
+             url += $"&directions={direction}";
+         }
+    
     //maak hier de juiste url
 }
 
 <a href="@url&directions=Left">Left</a>
-<!-- voeg zelf de andere richtingen toe -->
+<a href="@url&directions=Right">Right</a>
+<a href="@url&directions=Forward">Forward</a>
+<a href="@url&directions=Backward">Backward</a>
+<a href="@url&directions=Crash">Crash</a>
+
 
 <hr>
 <a href="?">Clear</a>
@@ -25,7 +34,19 @@
             case Exercise2.Direction.Left: 
                 <li>Left</li> 
             break;
-            //voeg de andere richtingen toe!
+            case Exercise2.Direction.Right: 
+                <li>Right</li> 
+                break;
+            case Exercise2.Direction.Forward: 
+                <li>Forward</li> 
+                break;
+            case Exercise2.Direction.Backward: 
+                <li>Backward</li> 
+                break;
+            case Exercise2.Direction.Crash: 
+                <li>Crash</li> 
+                break;
+            
         } 
     }
 </ul>

@@ -1,10 +1,34 @@
 @page /* plaats hier de route + constraints */
+@using Microsoft.AspNetCore.Routing.Template
 @model Exercises.Pages.Lesson1.Assignment4
 
 @{
     Layout = null;
 }
 
-<h1 id="categoryHeading">###</h1>
-<h2 id="subCategoryHeading">###</h2>
-<h3 id="productIdHeading">###</h3>
+<h1 id="categoryHeading">
+    @RouteData.Values["category"]
+    Katten
+</h1>
+<h2 id="subCategoryHeading">
+   @if (!@RouteData.Values.Keys.Contains("subcategory"))
+   {
+       @("Geen subcategory")
+   }
+   else
+   {
+       @RouteData.Values["subcategory"]
+   }
+   cat
+</h2>
+<h3 id="productIdHeading">
+    @if (!@RouteData.Values.Keys.Contains("productId"))
+       {
+           @("Geen productId")
+       }
+       else
+       {
+           @RouteData.Values["productId"]
+       }
+    16
+</h3>
